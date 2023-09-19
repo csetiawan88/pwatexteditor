@@ -20,7 +20,7 @@ module.exports = () => {
     plugins: [
       // HtmlWebpackPlugin to generate HTML files
       new HtmlWebpackPlugin({
-        template: "./src/index.html",
+        template: ".index.html",
         chunks: ["main"], // Specify which chunks to include in the HTML file
       }),
 
