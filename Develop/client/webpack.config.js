@@ -20,15 +20,15 @@ module.exports = () => {
     plugins: [
       // HtmlWebpackPlugin to generate HTML files
       new HtmlWebpackPlugin({
-        template: ".index.html",
+        template: "./index.html",
         chunks: ["main"], // Specify which chunks to include in the HTML file
       }),
 
       // WebpackPwaManifest to generate a PWA manifest file
       new WebpackPwaManifest({
-        name: "Your PWA Name",
-        short_name: "PWA Short Name",
-        description: "Your PWA Description",
+        name: "Just Another Text Editor",
+        short_name: "J.A.T.E",
+        description: "Note taker/text editor",
         background_color: "#ffffff",
         theme_color: "#000000",
         icons: [

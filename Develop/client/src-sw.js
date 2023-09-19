@@ -31,14 +31,14 @@ registerRoute(
   // Define a regular expression pattern for the assets you want to cache
   /\.(js|css|jpg|jpeg|png|gif|svg|ico)$/,
   // Use the CacheFirst strategy to cache assets
-  new CacheFirst({
-    cacheName: "assets-cache",
+  ({ request }) => ["style", "script", "worker"].includes(request.destination),
+  new StaleWhileRevalidate({
+    // Name of the cache storage.
+    cacheName: "asset-cache",
     plugins: [
+      // This plugin will cache responses with these headers to a maximum-age of 30 days
       new CacheableResponsePlugin({
         statuses: [0, 200],
-      }),
-      new ExpirationPlugin({
-        maxAgeSeconds: 7 * 24 * 60 * 60, // Cache assets for 7 days
       }),
     ],
   })
