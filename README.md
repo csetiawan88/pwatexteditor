@@ -51,8 +51,9 @@ THEN I should have proper build scripts for a webpack application
 ## Install & Run the Application
 
 - npm install (install all packages required)
--
--
+- npm run build
+- Open index.html in live server (Run Locally)
+- Else click on Heroku Link:
 
 ## Repository - Link
 

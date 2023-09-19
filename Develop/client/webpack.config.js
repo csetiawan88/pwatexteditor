@@ -18,51 +18,57 @@ module.exports = () => {
       path: path.resolve(__dirname, "dist"),
     },
     plugins: [
-      // HtmlWebpackPlugin to generate HTML files
+      // Webpack plugin that generates our html file and injects our bundles.
       new HtmlWebpackPlugin({
         template: "./index.html",
-        chunks: ["main"], // Specify which chunks to include in the HTML file
+        title: "JATE",
       }),
 
-      // WebpackPwaManifest to generate a PWA manifest file
+      // Injects our custom service worker
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "src-sw.js",
+      }),
+
+      // Creates a manifest.json file.
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: "Just Another Text Editor",
         short_name: "J.A.T.E",
-        description: "Note taker/text editor",
-        background_color: "#ffffff",
-        theme_color: "#000000",
+        description: "Offline Text Editor",
+        background_color: "#225ca3",
+        theme_color: "#225ca3",
+        start_url: "./",
+        publicPath: "./",
         icons: [
           {
-            src: path.resolve("src/icon.png"),
+            src: path.resolve("src/images/logo.png"),
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join("icons"),
+            destination: path.join("assets", "icons"),
           },
         ],
-      }),
-
-      // InjectManifest to include the service worker script
-      new InjectManifest({
-        swSrc: "./src/sw.js", // Path to your service worker script
-        exclude: [/\.map$/, /manifest\.json$/],
       }),
     ],
 
     module: {
       rules: [
-        // Add CSS loaders configuration if needed
         {
-          test: /\.css$/,
+          test: /\.css$/i,
           use: ["style-loader", "css-loader"],
         },
-
-        // Add Babel loader configuration if needed
         {
-          test: /\.js$/,
+          test: /\.m?js$/,
           exclude: /node_modules/,
+          // We use babel-loader in order to use ES6.
           use: {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
+              plugins: [
+                "@babel/plugin-proposal-object-rest-spread",
+                "@babel/transform-runtime",
+              ],
             },
           },
         },
