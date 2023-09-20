@@ -1,12 +1,17 @@
+// Import the openDB function from the "idb" library
 import { openDB } from "idb";
 
+// Function to initialize the database
 const initdb = async () =>
   openDB("jate", 1, {
+    // Upgrade function that runs when the database version changes
     upgrade(db) {
+      // Check if the "jate" object store already exists
       if (db.objectStoreNames.contains("jate")) {
         console.log("jate database already exists");
         return;
       }
+      // If not, create the "jate" object store with auto-incrementing keys
       db.createObjectStore("jate", { keyPath: "id", autoIncrement: true });
       console.log("jate database created");
     },
@@ -51,7 +56,7 @@ export const getDb = async () => {
   // Access the "jate" object store
   const store = tx.objectStore("jate");
 
-  // Retrieve all content from the object store
+  // Retrieve content with the key "1" from the object store
   const request = store.get(1);
 
   // Get confirmation of the request.
@@ -60,4 +65,5 @@ export const getDb = async () => {
   return result?.value;
 };
 
+// Call the initdb function to initialize the database when this module is loaded
 initdb();

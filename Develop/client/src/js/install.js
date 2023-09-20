@@ -1,40 +1,48 @@
+// Get a reference to the button element with the id "buttonInstall"
 const butInstall = document.getElementById("buttonInstall");
 
-// // Logic for installing the PWA
-// let deferredPrompt;
+// // Logic for installing the Progressive Web App (PWA)
 
-// TODO: Add an event handler to the `beforeinstallprompt` event
+// This variable will be used to store the "beforeinstallprompt" event
+let deferredPrompt;
+
+// TODO: Add an event handler for the `beforeinstallprompt` event
 window.addEventListener("beforeinstallprompt", (event) => {
   // Prevent the default browser prompt for installing the app
-  //event.preventDefault();
+  // event.preventDefault();
 
-  // Store the event to use it later
+  // Store the "beforeinstallprompt" event in the deferredPrompt variable
   window.deferredPrompt = event;
 
-  // Enable the "Install" button to allow the user to trigger installation
+  // Make the install button visible
   butInstall.classList.toggle("hidden", false);
 });
 
-// TODO: Implement a click event handler on the `butInstall` element
+// TODO: Implement a click event handler for the "butInstall" button
 butInstall.addEventListener("click", async () => {
+  // Retrieve the "beforeinstallprompt" event from the deferredPrompt variable
   const promptEvent = window.deferredPrompt;
 
+  // Check if the promptEvent is available
   if (!promptEvent) {
     return;
   }
 
-  // Show prompt
+  // Show the installation prompt to the user
   promptEvent.prompt();
 
-  // Reset the deferred prompt variable, it can only be used once.
+  // Reset the deferredPrompt variable
   window.deferredPrompt = null;
 
+  // Hide the install button after the user interacts with the prompt
   butInstall.classList.toggle("hidden", true);
 });
 
-// TODO: Add an handler for the `appinstalled` event
+// TODO: Add an event handler for the `appinstalled` event
 window.addEventListener("appinstalled", (event) => {
+  // Log a message when the app is successfully installed
   console.log("App installed successfully");
-  // Clear prompt
+
+  // Reset the deferredPrompt variable
   window.deferredPrompt = null;
 });
