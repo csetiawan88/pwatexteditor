@@ -73,6 +73,14 @@ csetiawan88 - https://github.com/csetiawan88/
 
 ![PWA Text Editor](screenshot1.jpg)
 
+#### Application's manifest.json file
+
+![manifest.json file](screenshot2.jpg)
+
+#### Application's IndexedDB storage
+
+![IndexedDB storage](screenshot3.jpg)
+
 ## Technologies
 
 ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
