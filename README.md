@@ -53,7 +53,7 @@ THEN I should have proper build scripts for a webpack application
 - npm install (install all packages required)
 - npm run build
 - Open index.html in live server (Run Locally)
-- Else click on Heroku Link:
+- Else click on Heroku Link: https://pwa-csetiawan88-c5b9b0735a14.herokuapp.com/
 
 ## Repository - Link
 
@@ -61,7 +61,7 @@ GITHUB: https://github.com/csetiawan88/pwatexteditor
 
 ## Website Link
 
-URL:
+URL: https://pwa-csetiawan88-c5b9b0735a14.herokuapp.com/
 
 ## Contributing
 
@@ -80,6 +80,14 @@ csetiawan88 - https://github.com/csetiawan88/
 #### Application's IndexedDB storage
 
 ![IndexedDB storage](screenshot3.jpg)
+
+#### Application's Install
+
+![Install](screenshot4.jpg)
+
+#### Application's registered service worker
+
+![registered service worker](screenshot5.jpg)
 
 ## Technologies
 
